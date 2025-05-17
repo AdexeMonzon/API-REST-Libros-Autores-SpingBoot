@@ -25,7 +25,7 @@ public class AutoresService {
         }
     }
 
-    public List<Autores> listarAutores () {
+    public List<Autores> listarAutores(Autores autor) {
         return repoAutores.findAll();
     }
 
