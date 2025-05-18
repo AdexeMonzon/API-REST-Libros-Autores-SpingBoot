@@ -18,7 +18,7 @@ public class Autores {
     private String nombre;
     private String nacionalidad;
     
-    @OneToMany(mappedBy = "Autor")
+    @OneToMany(mappedBy = "autor")
     private List<Libros> Libro;
 
     public Autores(){}

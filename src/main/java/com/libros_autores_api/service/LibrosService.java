@@ -1,5 +1,6 @@
 package com.libros_autores_api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -36,7 +37,33 @@ public class LibrosService {
         return librosRepository.save(libro);
     }
 
-    //te dejo buscar por id y el de buscar 
+
+    public List<Libros> buscarLibros(String titulo, Integer anio, String sortBy, String order) {
+    List<Libros> resultado = new ArrayList<>();
+
+    for (Libros libro : listarLibros()) {
+        boolean coincide = true;
+        if (titulo != null && !titulo.isEmpty()) {
+            if (!libro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
+                coincide = false;
+            }
+        }
+        if (anio != null) {
+            if (libro.getAnioPublicacion() != anio) {
+                coincide = false;
+            }
+        }
+        if (coincide) {
+            resultado.add(libro);
+        }
+    }
+
+    
+
+    return resultado;
+}
+
+
 
 
     
