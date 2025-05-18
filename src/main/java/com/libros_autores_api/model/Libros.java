@@ -2,6 +2,7 @@ package com.libros_autores_api.model;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +20,7 @@ public class Libros {
     private String ISBN;
     private int anioPublicacion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Autor")
     private Autores autor;
 

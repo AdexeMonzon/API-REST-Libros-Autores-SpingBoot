@@ -37,8 +37,15 @@ public class LibrosService {
         return librosRepository.save(libro);
     }
 
+    public void eliminarLibro (long id) {
+        if (!librosRepository.existsById(id)) {
+            throw new NoSuchElementException("El libro con el id " + id + " no existe");
+        }
+        librosRepository.deleteById(id);
+    }
 
-    public List<Libros> buscarLibros(String titulo, Integer anioPublicacion, String sortBy, String order) {
+
+    public List<Libros> buscarLibros(String titulo, Integer anio, String sortBy, String order) {
     List<Libros> resultado = new ArrayList<>();
 
     for (Libros libro : listarLibros()) {
@@ -48,23 +55,26 @@ public class LibrosService {
                 coincide = false;
             }
         }
-        if (anioPublicacion != null) {
-            if (libro.getAnioPublicacion() != anioPublicacion) {
+        if (anio != null) {
+            if (libro.getAnioPublicacion() != anio) {
                 coincide = false;
             }
         }
         if (coincide) {
             resultado.add(libro);
         }
+
+        if (order != null && !order.isEmpty()) {
+            switch (order) {
+                case "asc":
+                        
+                    break;
+            
+                default:
+                    break;
+            }
+        }
     }
-
-    
-
     return resultado;
-}
-
-
-
-
-    
+}   
 }

@@ -2,6 +2,7 @@ package com.libros_autores_api.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,12 +40,18 @@ public class LibrosController {
         return librosService.updateLibro(id, libro);
     }
 
+    @DeleteMapping("/{id}")
+    public void eliminarLibro(@PathVariable Long id) {
+        librosService.eliminarLibro(id);
+    }
+
+
     @GetMapping("/buscar")
     public List<Libros> buscarLibros(
             @RequestParam(required = false) String titulo,
-            @RequestParam(required = false) Integer anioPublicacion,
+            @RequestParam(required = false) Integer anio,
             @RequestParam(required = false, defaultValue = "anioPublicacion") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String order) {
-        return librosService.buscarLibros(titulo, anioPublicacion, sortBy, order);
+        return librosService.buscarLibros(titulo, anio, sortBy, order);
     }
 }
