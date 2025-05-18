@@ -1,5 +1,7 @@
 package com.libros_autores_api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,6 +24,7 @@ public class Libros {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Autor")
+    @JsonBackReference
     private Autores autor;
 
     public Libros() {}
