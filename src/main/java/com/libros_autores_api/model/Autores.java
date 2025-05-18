@@ -2,6 +2,10 @@ package com.libros_autores_api.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,7 +22,9 @@ public class Autores {
     private String nombre;
     private String nacionalidad;
     
-    @OneToMany(mappedBy = "autor")
+    @OneToMany(mappedBy = "autor",
+    cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Libros> libro;
 
     public Autores(){}
@@ -55,11 +61,11 @@ public class Autores {
     }
 
     public List<Libros> getLibro() {
-        return Libro;
+        return libro;
     }
 
     public void setLibro(List<Libros> libro) {
-        Libro = libro;
+        this.libro = libro;
     }
 
     

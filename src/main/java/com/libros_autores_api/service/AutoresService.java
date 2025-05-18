@@ -18,14 +18,19 @@ public class AutoresService {
     }
 
     public Autores crearAutor(Autores autor){
-        if(repoAutores.existsById(autor.getId()) || repoAutores.existsByNombre(autor.getNombre())){
-            throw new NoSuchElementException("No se puede crear este autor, ya existe en la base de datos");
+        if(repoAutores.existsByNombre(autor.getNombre())){
+        throw new NoSuchElementException("No se puede crear este autor, ya existe en la base de datos");
         }else{
-            return repoAutores.save(autor);
+            if (autor.getLibro() != null) {
+            for (Libros libro : autor.getLibro()) {
+                libro.setAutor(autor);
+            }
+        }
+        return repoAutores.save(autor);
         }
     }
 
-    public List<Autores> listarAutores(Autores autor) {
+    public List<Autores> listarAutores() {
         return repoAutores.findAll();
     }
 

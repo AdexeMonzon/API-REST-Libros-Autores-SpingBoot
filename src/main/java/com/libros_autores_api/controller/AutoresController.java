@@ -25,8 +25,8 @@ public class AutoresController {
     }
 
     @GetMapping
-    public List<Autores> listarAutores(Autores autor){
-        return controllerAutor.listarAutores(autor);
+    public List<Autores> listarAutores(){
+        return controllerAutor.listarAutores();
     }
 
     @PostMapping

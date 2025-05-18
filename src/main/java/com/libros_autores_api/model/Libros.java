@@ -1,5 +1,7 @@
 package com.libros_autores_api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "libros")
+@Table(name = "Libros")
 public class Libros {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -20,7 +22,8 @@ public class Libros {
     private int anioPublicacion;
 
     @ManyToOne
-    @JoinColumn(name = "autorId")
+    @JoinColumn(name = "Autor")
+    @JsonBackReference
     private Autores autor;
 
     public Libros() {}
