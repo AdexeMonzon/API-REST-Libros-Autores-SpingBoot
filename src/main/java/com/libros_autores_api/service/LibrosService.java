@@ -38,7 +38,7 @@ public class LibrosService {
     }
 
 
-    public List<Libros> buscarLibros(String titulo, Integer anio, String sortBy, String order) {
+    public List<Libros> buscarLibros(String titulo, Integer anioPublicacion, String sortBy, String order) {
     List<Libros> resultado = new ArrayList<>();
 
     for (Libros libro : listarLibros()) {
@@ -48,8 +48,8 @@ public class LibrosService {
                 coincide = false;
             }
         }
-        if (anio != null) {
-            if (libro.getAnioPublicacion() != anio) {
+        if (anioPublicacion != null) {
+            if (libro.getAnioPublicacion() != anioPublicacion) {
                 coincide = false;
             }
         }
