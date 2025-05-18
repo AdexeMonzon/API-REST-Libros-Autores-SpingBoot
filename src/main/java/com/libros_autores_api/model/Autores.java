@@ -19,7 +19,7 @@ public class Autores {
     private String nacionalidad;
     
     @OneToMany(mappedBy = "autor")
-    private List<Libros> Libro;
+    private List<Libros> libro;
 
     public Autores(){}
 
@@ -27,7 +27,7 @@ public class Autores {
         this.id = id;
         this.nombre = nombre;
         this.nacionalidad = nacionalidad;
-        Libro = libro;
+        this.libro =libro;
     }
 
     public Long getId() {
@@ -55,11 +55,11 @@ public class Autores {
     }
 
     public List<Libros> getLibro() {
-        return Libro;
+        return libro;
     }
 
     public void setLibro(List<Libros> libro) {
-        Libro = libro;
+        this.libro = libro;
     }
 
     

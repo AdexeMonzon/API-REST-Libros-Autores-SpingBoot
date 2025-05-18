@@ -43,4 +43,11 @@ public class AutoresController {
     public Autores editarAutor(@RequestBody Autores autor,@PathVariable Long id){
         return controllerAutor.updatAutores(autor, id);
     }
+
+    @PostMapping("/id")
+        public void listarAutoresPorId(@PathVariable Long id){
+             controllerAutor.listarAutorPorId(id);
+        }
+    
+    
 }
