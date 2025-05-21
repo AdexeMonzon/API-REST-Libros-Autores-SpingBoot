@@ -1,9 +1,9 @@
 package com.libros_autores_api.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.libros_autores_api.model.Libros;
@@ -18,11 +18,9 @@ public class LibrosService {
         this.librosRepository = librosRepository;
     }
 
-
     public Libros crearLibro (Libros libro) {
         return librosRepository.save(libro);
     }
-
 
     public List<Libros> listarLibros () {
         return librosRepository.findAll();
@@ -44,37 +42,12 @@ public class LibrosService {
         librosRepository.deleteById(id);
     }
 
-
-    public List<Libros> buscarLibros(String titulo, Integer anio, String sortBy, String order) {
-    List<Libros> resultado = new ArrayList<>();
-
-    for (Libros libro : listarLibros()) {
-        boolean coincide = true;
-        if (titulo != null && !titulo.isEmpty()) {
-            if (!libro.getTitulo().toLowerCase().contains(titulo.toLowerCase())) {
-                coincide = false;
-            }
-        }
-        if (anio != null) {
-            if (libro.getAnioPublicacion() != anio) {
-                coincide = false;
-            }
-        }
-        if (coincide) {
-            resultado.add(libro);
-        }
-
-        if (order != null && !order.isEmpty()) {
-            switch (order) {
-                case "asc":
-                        
-                    break;
-            
-                default:
-                    break;
-            }
-        }
+    public List<Libros> buscarLibros(String titulo, Integer anioMin, Integer anioMax, String sortBy, String order) {
+    String title = (titulo == null) ? "" : titulo;
+    int min = (anioMin == null) ? 0 : anioMin;
+    int max = (anioMax == null) ? Integer.MAX_VALUE : anioMax;
+    Sort.Direction dir = "desc".equalsIgnoreCase(order) ? Sort.Direction.DESC : Sort.Direction.ASC;
+    Sort sort = Sort.by(dir, sortBy == null ? "anioPublicacion" : sortBy);
+    return librosRepository.findByTituloContainingIgnoreCaseAndAnioPublicacionBetween(title, min, max, sort);
     }
-    return resultado;
-}   
 }

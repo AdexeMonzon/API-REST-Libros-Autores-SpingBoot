@@ -45,13 +45,16 @@ public class LibrosController {
         librosService.eliminarLibro(id);
     }
 
-
     @GetMapping("/buscar")
     public List<Libros> buscarLibros(
             @RequestParam(required = false) String titulo,
-            @RequestParam(required = false) Integer anio,
+            @RequestParam(required = false) Integer anioMin,
+            @RequestParam(required = false) Integer anioMax,
             @RequestParam(required = false, defaultValue = "anioPublicacion") String sortBy,
             @RequestParam(required = false, defaultValue = "asc") String order) {
-        return librosService.buscarLibros(titulo, anio, sortBy, order);
+        return librosService.buscarLibros(titulo, anioMin, anioMax, sortBy, order);
     }
+
+
+    
 }

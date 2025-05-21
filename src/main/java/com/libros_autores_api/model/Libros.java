@@ -2,7 +2,6 @@ package com.libros_autores_api.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ public class Libros {
     private Long id;
 
     private String titulo;
-    private String ISBN;
+    private String isbn;
     private int anioPublicacion;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -29,14 +28,14 @@ public class Libros {
 
     public Libros() {}
 
-    public Libros(Long id, String titulo, String iSBN, int anioPublicacion, Autores autor) {
+    public Libros(Long id, String titulo, String isbn, int anioPublicacion, Autores autor) {
         this.id = id;
         this.titulo = titulo;
-        ISBN = iSBN;
+        this.isbn = isbn;
         this.anioPublicacion = anioPublicacion;
         this.autor = autor;
     }
-
+ 
     public Long getId() {return id;}
 
     public void setId(Long id) {this.id = id;}
@@ -45,9 +44,9 @@ public class Libros {
 
     public void setTitulo(String titulo) {this.titulo = titulo;}
 
-    public String getISBN() {return ISBN;}
+    public String getISBN() {return isbn;}
 
-    public void setISBN(String iSBN) {ISBN = iSBN;}
+    public void setISBN(String iSBN) {isbn = iSBN;}
 
     public int getAnioPublicacion() {return anioPublicacion;}
 
